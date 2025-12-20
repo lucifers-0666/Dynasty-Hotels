@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logo Test - Dynasty Hotels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #5D4037;
+            margin-top: 0;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        img {
+            border: 2px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏨 Dynasty Hotels Logo Test</h1>
+    
+    <div class="test-box">
+        <h2>Test 1: Absolute Path from Web Root</h2>
+        <p><strong>Path:</strong> <code>/Php project/php_project/assets/images/index/li_logo.svg</code></p>
+        <img src="/Php project/php_project/assets/images/index/li_logo.svg" alt="Logo Test 1" style="max-height: 70px;" 
+             onload="document.getElementById('test1').innerHTML = '✅ SUCCESS'" 
+             onerror="document.getElementById('test1').innerHTML = '❌ FAILED - Check console'">
+        <p id="test1" style="font-weight: bold;">Loading...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Test 2: Relative Path (up one level)</h2>
+        <p><strong>Path:</strong> <code>../assets/images/index/li_logo.svg</code></p>
+        <img src="../assets/images/index/li_logo.svg" alt="Logo Test 2" style="max-height: 70px;" 
+             onload="document.getElementById('test2').innerHTML = '✅ SUCCESS'" 
+             onerror="document.getElementById('test2').innerHTML = '❌ FAILED'">
+        <p id="test2" style="font-weight: bold;">Loading...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Test 3: Direct Path</h2>
+        <p><strong>Path:</strong> <code>assets/images/index/li_logo.svg</code></p>
+        <img src="assets/images/index/li_logo.svg" alt="Logo Test 3" style="max-height: 70px;" 
+             onload="document.getElementById('test3').innerHTML = '✅ SUCCESS'" 
+             onerror="document.getElementById('test3').innerHTML = '❌ FAILED'">
+        <p id="test3" style="font-weight: bold;">Loading...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>📋 Instructions:</h2>
+        <ol>
+            <li>Press <strong>F12</strong> to open Developer Tools</li>
+            <li>Go to <strong>Console</strong> tab</li>
+            <li>Check for any 404 errors</li>
+            <li>Go to <strong>Network</strong> tab</li>
+            <li>Look for <code>li_logo.svg</code> request</li>
+            <li>Check the actual URL it's trying to load</li>
+        </ol>
+        <p><strong>Whichever test shows ✅ SUCCESS, that's the path we should use in your header!</strong></p>
+    </div>
+    
+    <script>
+        console.log('Logo test page loaded');
+        console.log('Test file location:', window.location.href);
+    </script>
+</body>
+</html>
