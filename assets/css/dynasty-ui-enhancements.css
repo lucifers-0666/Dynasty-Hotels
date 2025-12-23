@@ -1,0 +1,805 @@
+/*
+ * DYNASTY HOTEL UI ENHANCEMENTS
+ * Comprehensive glassmorphism, animations, and modern interactions
+ * Version: 2.0 | Date: December 2025
+ */
+
+/* ==========================================
+   GLOBAL DESIGN SYSTEM & CSS VARIABLES
+   ========================================== */
+:root {
+  /* Color Palette */
+  --primary-bronze: #8B7355;
+  --secondary-charcoal: #2C2C2C;
+  --accent-gold: #D4AF37;
+  --accent-gold-hover: #E5C047;
+  --accent-gold-dark: #B8941F;
+  
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-light: rgba(255, 255, 255, 0.12);
+  --glass-bg-medium: rgba(255, 255, 255, 0.15);
+  --glass-bg-strong: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border-light: rgba(255, 255, 255, 0.2);
+  --glass-border-medium: rgba(255, 255, 255, 0.25);
+  
+  /* Backdrop Blur Values */
+  --blur-light: 12px;
+  --blur-medium: 16px;
+  --blur-strong: 20px;
+  --blur-intense: 22px;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-body: 'Inter', 'Montserrat', sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-gold: 0 4px 16px rgba(212, 175, 55, 0.4);
+  --shadow-gold-lg: 0 8px 24px rgba(212, 175, 55, 0.6);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease-out;
+  --transition-base: 0.3s ease-out;
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================
+   TYPOGRAPHY ENHANCEMENTS
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* ==========================================
+   SECTION 1: GLASSMORPHISM NAVIGATION BAR
+   ========================================== */
+.dynasty-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 1000;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-base);
+}
+
+/* Header Scrolled State */
+.dynasty-header.scrolled {
+  height: 70px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(200%);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo Section */
+.dynasty-header .logo {
+  height: 50px;
+  transition: all var(--transition-base);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.dynasty-header .logo:hover {
+  transform: scale(1.05);
+}
+
+.dynasty-header.scrolled .logo {
+  height: 45px;
+}
+
+/* Navigation Links */
+.dynasty-nav {
+  display: inline-flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.dynasty-nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  position: relative;
+  padding: 8px 0;
+  transition: all var(--transition-base);
+}
+
+/* Underline Animation */
+.dynasty-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transform: translateX(-50%);
+  transition: width var(--transition-base);
+}
+
+.dynasty-nav-link:hover {
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.dynasty-nav-link:hover::after {
+  width: 100%;
+}
+
+.dynasty-nav-link.active {
+  color: var(--accent-gold);
+}
+
+.dynasty-nav-link.active::after {
+  width: 100%;
+}
+
+/* Search Icon with Rotation */
+.dynasty-search-icon {
+  width: 22px;
+  height: 22px;
+  color: rgba(255, 255, 255, 0.95);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.dynasty-search-icon:hover {
+  color: var(--accent-gold);
+  transform: rotate(90deg);
+}
+
+/* ==========================================
+   SECTION 2: ENHANCED HERO SECTION
+   ========================================== */
+.dynasty-hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Background with Parallax */
+.dynasty-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dynasty-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenBurns 10s ease-out infinite alternate;
+}
+
+/* Ken Burns Effect */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Gradient Overlay */
+.dynasty-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(139,115,85,0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero Content Container */
+.dynasty-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 40px 5%;
+  text-align: center;
+}
+
+/* Main Heading with Split Animation */
+.dynasty-hero-title {
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.dynasty-hero-title .word {
+  display: inline-block;
+  animation: wordReveal 0.8s ease-out forwards;
+}
+
+.dynasty-hero-title .word:nth-child(1) { animation-delay: 0s; }
+.dynasty-hero-title .word:nth-child(2) { animation-delay: 0.1s; }
+.dynasty-hero-title .word:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes wordReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dynasty-hero-title .word:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+  transition: all var(--transition-base);
+}
+
+/* Subheading */
+.dynasty-hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1.5px;
+  margin-top: 24px;
+  opacity: 0;
+  animation: fadeIn 0.9s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   SECTION 3: GLASS BOOKING SEARCH FORM
+   ========================================== */
+.dynasty-booking-form {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 1100px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 20px 30px;
+  opacity: 0;
+  animation: slideUp 0.8s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Grid Layout */
+.dynasty-booking-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: center;
+  height: 100%;
+}
+
+/* Individual Input Field Containers */
+.dynasty-booking-field {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Effect on Hover */
+.dynasty-booking-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.dynasty-booking-field:hover::before {
+  left: 100%;
+}
+
+.dynasty-booking-field:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
+}
+
+.dynasty-booking-field:focus-within {
+  border: 2px solid var(--accent-gold);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 0 0 4px rgba(212, 175, 55, 0.15),
+    0 4px 20px rgba(212, 175, 55, 0.3);
+  transform: scale(1.02);
+}
+
+/* Field Labels */
+.dynasty-booking-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input Values */
+.dynasty-booking-input {
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFFFFF;
+  background: transparent;
+  border: none;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.dynasty-booking-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Search Button */
+.dynasty-search-btn {
+  grid-column: 4;
+  width: 100%;
+  height: 56px;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dark) 100%);
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #1A1A1A;
+  cursor: pointer;
+  box-shadow: var(--shadow-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.dynasty-search-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-gold-lg);
+  background: linear-gradient(135deg, var(--accent-gold-hover) 0%, #C9A52F 100%);
+}
+
+.dynasty-search-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+.dynasty-search-btn .arrow-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-base);
+}
+
+.dynasty-search-btn:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   SECTION 4: SCROLL INDICATOR
+   ========================================== */
+.dynasty-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 30;
+  transition: all var(--transition-base);
+}
+
+/* Mouse Icon */
+.dynasty-mouse {
+  width: 28px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+/* Scroll Wheel Animation */
+.dynasty-mouse::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0%, 100% {
+    top: 8px;
+    opacity: 1;
+  }
+  50% {
+    top: 20px;
+    opacity: 0.3;
+  }
+}
+
+.dynasty-scroll-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: fadePulse 2s ease-in-out infinite;
+}
+
+@keyframes fadePulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Hover State */
+.dynasty-scroll-indicator:hover .dynasty-mouse {
+  border-color: var(--accent-gold);
+  transform: scale(1.1);
+}
+
+.dynasty-scroll-indicator:hover .dynasty-scroll-text {
+  color: var(--accent-gold);
+}
+
+.dynasty-scroll-indicator:hover {
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+}
+
+/* ==========================================
+   SECTION 5: QUICK STATS/FEATURES BAR
+   ========================================== */
+.dynasty-stats-bar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 40px 5%;
+  border-top: 1px solid rgba(139, 115, 85, 0.2);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.dynasty-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Individual Stat Card */
+.dynasty-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: transparent;
+  border-right: 1px solid rgba(139, 115, 85, 0.15);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.dynasty-stat-card:last-child {
+  border-right: none;
+}
+
+.dynasty-stat-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Icon Container */
+.dynasty-stat-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 115, 85, 0.08) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all var(--transition-base);
+}
+
+.dynasty-stat-card:hover .dynasty-stat-icon-wrapper {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 115, 85, 0.15));
+  transform: scale(1.15) rotate(5deg);
+  animation: iconPulse 0.6s ease-in-out;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  50% {
+    transform: scale(1.25) rotate(-5deg);
+  }
+}
+
+.dynasty-stat-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--primary-bronze);
+  stroke-width: 1.5px;
+}
+
+/* Stat Number with Counter Animation */
+.dynasty-stat-number {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--secondary-charcoal);
+  margin-bottom: 8px;
+  transition: color var(--transition-base);
+}
+
+.dynasty-stat-card:hover .dynasty-stat-number {
+  color: var(--accent-gold);
+}
+
+/* Stat Label */
+.dynasty-stat-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.dynasty-stat-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .dynasty-hero-title {
+    font-size: 56px;
+  }
+  
+  .dynasty-booking-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .dynasty-search-btn {
+    grid-column: span 2;
+  }
+  
+  .dynasty-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  
+  .dynasty-stat-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+  }
+  
+  .dynasty-stat-card:nth-child(3),
+  .dynasty-stat-card:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Mobile (320px - 767px) */
+@media (max-width: 767px) {
+  .dynasty-header {
+    height: 70px;
+    padding: 0 20px;
+  }
+  
+  .dynasty-nav {
+    gap: 20px;
+  }
+  
+  .dynasty-nav-link {
+    font-size: 13px;
+  }
+  
+  .dynasty-hero-title {
+    font-size: 36px;
+  }
+  
+  .dynasty-hero-subtitle {
+    font-size: 16px;
+  }
+  
+  .dynasty-booking-form {
+    padding: 16px;
+    height: auto;
+  }
+  
+  .dynasty-booking-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .dynasty-search-btn {
+    grid-column: 1;
+  }
+  
+  .dynasty-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .dynasty-stat-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+    padding: 20px;
+  }
+  
+  .dynasty-stat-card:last-child {
+    border-bottom: none;
+  }
+  
+  /* Disable parallax and Ken Burns on mobile */
+  .dynasty-hero-image {
+    animation: none;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .dynasty-hero-image {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.dynasty-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.dynasty-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.dynasty-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Focus Indicators for Accessibility */
+*:focus {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+button:focus,
+a:focus,
+input:focus {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--accent-gold);
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background: var(--accent-gold);
+  color: #FFFFFF;
+}

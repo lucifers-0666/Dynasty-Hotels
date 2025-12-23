@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynasty Hotel - Enhanced UI Demo</title>
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Original Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/homepage-optimization.css">
+    
+    <!-- NEW: Enhanced UI Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/dynasty-ui-enhancements.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Skip to Main Content (Accessibility) -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+    <!-- ==========================================
+         ENHANCED GLASSMORPHISM NAVIGATION BAR
+         ========================================== -->
+    <header class="dynasty-header">
+        <!-- Logo -->
+        <div class="dynasty-logo-wrapper">
+            <img src="../assets/images/logo.png" alt="Dynasty Hotel Logo" class="logo">
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="dynasty-nav" role="navigation" aria-label="Main navigation">
+            <a href="#home" class="dynasty-nav-link active">Home</a>
+            <a href="#rooms" class="dynasty-nav-link">Rooms</a>
+            <a href="#dining" class="dynasty-nav-link">Dining</a>
+            <a href="#amenities" class="dynasty-nav-link">Amenities</a>
+            <a href="#about" class="dynasty-nav-link">About</a>
+            <a href="#contact" class="dynasty-nav-link">Contact</a>
+        </nav>
+
+        <!-- Search Icon -->
+        <div class="dynasty-search-icon" aria-label="Search" role="button" tabindex="0">
+            <i data-lucide="search" style="width: 22px; height: 22px;"></i>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
+    <main id="main-content" role="main">
+
+        <!-- ==========================================
+             ENHANCED HERO SECTION
+             ========================================== -->
+        <section class="dynasty-hero">
+            <!-- Background with Parallax -->
+            <div class="dynasty-hero-bg">
+                <picture>
+                    <source srcset="../assets/images/index/v3.avif" type="image/avif">
+                    <source srcset="../assets/images/index/v3.webp" type="image/webp">
+                    <img src="../assets/images/index/v3.avif" 
+                         alt="Dynasty Hotel Luxury Exterior" 
+                         class="dynasty-hero-image"
+                         loading="eager"
+                         fetchpriority="high">
+                </picture>
+            </div>
+
+            <!-- Gradient Overlay -->
+            <div class="dynasty-hero-overlay"></div>
+
+            <!-- Hero Content -->
+            <div class="dynasty-hero-content">
+                <!-- Main Heading with Split Text -->
+                <h1 class="dynasty-hero-title">DYNASTY HOTEL</h1>
+
+                <!-- Subheading -->
+                <p class="dynasty-hero-subtitle">Luxury Living, Unmatched Comfort</p>
+
+                <!-- Glass Booking Search Form -->
+                <div class="dynasty-booking-form">
+                    <div class="dynasty-booking-grid">
+                        
+                        <!-- Check-in Field -->
+                        <div class="dynasty-booking-field">
+                            <label class="dynasty-booking-label" for="checkin-date">
+                                <i data-lucide="calendar" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i>
+                                Check-in
+                            </label>
+                            <input type="date" 
+                                   id="checkin-date" 
+                                   class="dynasty-booking-input" 
+                                   placeholder="Select date"
+                                   aria-label="Check-in date">
+                        </div>
+
+                        <!-- Check-out Field -->
+                        <div class="dynasty-booking-field">
+                            <label class="dynasty-booking-label" for="checkout-date">
+                                <i data-lucide="calendar" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i>
+                                Check-out
+                            </label>
+                            <input type="date" 
+                                   id="checkout-date" 
+                                   class="dynasty-booking-input" 
+                                   placeholder="Select date"
+                                   aria-label="Check-out date">
+                        </div>
+
+                        <!-- Guests Field -->
+                        <div class="dynasty-booking-field">
+                            <label class="dynasty-booking-label" for="guests-select">
+                                <i data-lucide="users" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i>
+                                Guests
+                            </label>
+                            <select id="guests-select" class="dynasty-booking-input" aria-label="Number of guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4+ Guests</option>
+                            </select>
+                        </div>
+
+                        <!-- Search Button with Shimmer -->
+                        <button type="submit" class="dynasty-search-btn cta-magnetic" aria-label="Check availability">
+                            <span>CHECK AVAILABILITY</span>
+                            <i data-lucide="arrow-right" class="arrow-icon"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="dynasty-scroll-indicator" role="button" tabindex="0" aria-label="Scroll down">
+                <div class="dynasty-mouse"></div>
+                <span class="dynasty-scroll-text">Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             QUICK STATS/FEATURES BAR
+             ========================================== -->
+        <section class="dynasty-stats-bar" aria-label="Hotel statistics">
+            <div class="dynasty-stats-grid">
+
+                <!-- Stat 1: Rooms -->
+                <div class="dynasty-stat-card" data-animate="fade-in-up">
+                    <div class="dynasty-stat-icon-wrapper">
+                        <i data-lucide="bed" class="dynasty-stat-icon"></i>
+                    </div>
+                    <div class="dynasty-stat-number" data-target="150" data-suffix="+">150+</div>
+                    <div class="dynasty-stat-label">Luxury Rooms</div>
+                </div>
+
+                <!-- Stat 2: Awards -->
+                <div class="dynasty-stat-card" data-animate="fade-in-up">
+                    <div class="dynasty-stat-icon-wrapper">
+                        <i data-lucide="award" class="dynasty-stat-icon"></i>
+                    </div>
+                    <div class="dynasty-stat-number" data-target="25" data-suffix="+">25+</div>
+                    <div class="dynasty-stat-label">Awards Won</div>
+                </div>
+
+                <!-- Stat 3: Staff -->
+                <div class="dynasty-stat-card" data-animate="fade-in-up">
+                    <div class="dynasty-stat-icon-wrapper">
+                        <i data-lucide="users" class="dynasty-stat-icon"></i>
+                    </div>
+                    <div class="dynasty-stat-number" data-target="200" data-suffix="+">200+</div>
+                    <div class="dynasty-stat-label">Expert Staff</div>
+                </div>
+
+                <!-- Stat 4: Satisfaction -->
+                <div class="dynasty-stat-card" data-animate="fade-in-up">
+                    <div class="dynasty-stat-icon-wrapper">
+                        <i data-lucide="star" class="dynasty-stat-icon"></i>
+                    </div>
+                    <div class="dynasty-stat-number" data-target="98" data-suffix="%">98%</div>
+                    <div class="dynasty-stat-label">Guest Satisfaction</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Additional sections would go here -->
+
+    </main>
+
+    <!-- ==========================================
+         JAVASCRIPT INITIALIZATION
+         ========================================== -->
+    
+    <!-- Original Scripts -->
+    <script src="../assets/js/index.js" defer></script>
+    
+    <!-- NEW: Enhanced UI JavaScript -->
+    <script src="../assets/js/dynasty-ui-enhancements.js" defer></script>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        // Initialize Lucide icons when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>

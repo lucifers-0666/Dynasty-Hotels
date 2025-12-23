@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynasty Hotel UI Enhancements - Feature Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+        }
+        
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #8B7355;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .demo-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px dashed #ddd;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Demo: Glassmorphism Nav */
+        .demo-glass-nav {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .demo-logo {
+            font-weight: 700;
+            color: #8B7355;
+        }
+        
+        .demo-nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .demo-nav-link {
+            color: #333;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .demo-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #D4AF37;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        .demo-nav-link:hover {
+            color: #D4AF37;
+        }
+        
+        .demo-nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Demo: Hero Title */
+        .demo-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #8B7355;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.2s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Demo: Glass Form Field */
+        .demo-glass-field {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 16px;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .demo-glass-field:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Demo: Scroll Indicator */
+        .demo-scroll {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .demo-mouse {
+            width: 28px;
+            height: 42px;
+            border: 2px solid #8B7355;
+            border-radius: 14px;
+            position: relative;
+        }
+        
+        .demo-mouse::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: #8B7355;
+            border-radius: 2px;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollDown {
+            0%, 100% {
+                top: 8px;
+                opacity: 1;
+            }
+            50% {
+                top: 20px;
+                opacity: 0.3;
+            }
+        }
+        
+        /* Demo: Stat Card */
+        .demo-stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .demo-stat-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .demo-stat-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 115, 85, 0.08));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-stat-card:hover .demo-stat-icon-wrapper {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 115, 85, 0.15));
+            transform: scale(1.15) rotate(5deg);
+        }
+        
+        .demo-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #2C2C2C;
+            transition: color 0.3s ease;
+        }
+        
+        .demo-stat-card:hover .demo-stat-number {
+            color: #D4AF37;
+        }
+        
+        .demo-stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Demo: Search Button */
+        .demo-search-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #1A1A1A;
+            border: none;
+            border-radius: 10px;
+            padding: 16px 32px;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .demo-search-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* Feature Tags */
+        .feature-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        
+        .tag {
+            background: #8B7355;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .tag.gold {
+            background: #D4AF37;
+            color: #1A1A1A;
+        }
+        
+        .tag.green {
+            background: #10b981;
+        }
+        
+        .cta-section {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #8B7355;
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #1A1A1A;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .cta-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.6);
+        }
+        
+        .cta-btn.secondary {
+            background: white;
+            color: #8B7355;
+            border: 2px solid #8B7355;
+        }
+        
+        .cta-btn.secondary:hover {
+            background: #8B7355;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .demo-hero-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏨 Dynasty Hotel UI Enhancements</h1>
+            <p>Feature Showcase & Interactive Demo</p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="feature-grid">
+            
+            <!-- Feature 1: Glassmorphism Navigation -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="navigation" style="width: 32px; height: 32px;"></i>
+                    Glassmorphism Navigation
+                </h2>
+                <p class="feature-description">
+                    Transparent navigation bar with backdrop blur effect, smooth hover animations, and underline effects. Fixed positioning follows scroll with dynamic opacity.
+                </p>
+                <div class="demo-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="demo-glass-nav">
+                        <div class="demo-logo">DYNASTY</div>
+                        <nav class="demo-nav-links">
+                            <a href="#" class="demo-nav-link">Home</a>
+                            <a href="#" class="demo-nav-link">Rooms</a>
+                            <a href="#" class="demo-nav-link">Dining</a>
+                        </nav>
+                        <i data-lucide="search" style="width: 20px; height: 20px;"></i>
+                    </div>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">Blur: 16px</span>
+                    <span class="tag gold">Gold Accent</span>
+                    <span class="tag green">Responsive</span>
+                </div>
+            </div>
+
+            <!-- Feature 2: Animated Hero Title -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="type" style="width: 32px; height: 32px;"></i>
+                    Split Text Animation
+                </h2>
+                <p class="feature-description">
+                    Hero title splits into individual words with staggered reveal animation. Each word scales and glows on hover for interactive elegance.
+                </p>
+                <div class="demo-box">
+                    <h1 class="demo-hero-title">DYNASTY HOTEL</h1>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">Stagger: 0.1s</span>
+                    <span class="tag">Duration: 1.2s</span>
+                    <span class="tag green">Hover Interactive</span>
+                </div>
+            </div>
+
+            <!-- Feature 3: Glass Form Fields -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="square" style="width: 32px; height: 32px;"></i>
+                    Glass Form Fields
+                </h2>
+                <p class="feature-description">
+                    Booking form fields with glassmorphism, hover lift effects, shimmer animation, and focus glow. Fully accessible with keyboard navigation.
+                </p>
+                <div class="demo-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="demo-glass-field">
+                        <div style="font-size: 11px; color: rgba(255,255,255,0.8); text-transform: uppercase; margin-bottom: 8px;">Check-in Date</div>
+                        <div style="color: white;">Select Date →</div>
+                    </div>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">Blur: 20px</span>
+                    <span class="tag gold">Hover: Lift + Glow</span>
+                    <span class="tag">Focus: Scale 1.02</span>
+                </div>
+            </div>
+
+            <!-- Feature 4: Scroll Indicator -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="mouse-pointer-click" style="width: 32px; height: 32px;"></i>
+                    Animated Scroll Indicator
+                </h2>
+                <p class="feature-description">
+                    Mouse icon with animated scroll wheel and pulsing text. Smooth scroll to next section on click. Fades out after user scrolls.
+                </p>
+                <div class="demo-box">
+                    <div class="demo-scroll">
+                        <div class="demo-mouse"></div>
+                        <span style="font-size: 12px; color: #666; text-transform: uppercase;">Scroll Down</span>
+                    </div>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">Animation: 2s infinite</span>
+                    <span class="tag green">Accessible</span>
+                    <span class="tag">Auto-hide</span>
+                </div>
+            </div>
+
+            <!-- Feature 5: Stat Counter -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="trending-up" style="width: 32px; height: 32px;"></i>
+                    Counter Animation
+                </h2>
+                <p class="feature-description">
+                    Statistics animate from 0 to target value when scrolled into view. 3D tilt on hover (desktop) with icon rotation and scale effects.
+                </p>
+                <div class="demo-box">
+                    <div class="demo-stat-card">
+                        <div class="demo-stat-icon-wrapper">
+                            <i data-lucide="star" style="width: 32px; height: 32px; color: #8B7355;"></i>
+                        </div>
+                        <div class="demo-stat-number">98%</div>
+                        <div class="demo-stat-label">Satisfaction</div>
+                    </div>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">IntersectionObserver</span>
+                    <span class="tag gold">3D Tilt</span>
+                    <span class="tag">Icon Rotation</span>
+                </div>
+            </div>
+
+            <!-- Feature 6: Search Button -->
+            <div class="feature-card">
+                <h2 class="feature-title">
+                    <i data-lucide="sparkles" style="width: 32px; height: 32px;"></i>
+                    Magnetic Button
+                </h2>
+                <p class="feature-description">
+                    Button with gradient background, ripple effect on click, and magnetic attraction to mouse (80px radius). Arrow icon animates on hover.
+                </p>
+                <div class="demo-box">
+                    <button class="demo-search-btn">
+                        <span>CHECK AVAILABILITY</span>
+                        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                    </button>
+                </div>
+                <div class="feature-tags">
+                    <span class="tag">Gradient</span>
+                    <span class="tag gold">Magnetic: 80px</span>
+                    <span class="tag green">Ripple Effect</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Additional Features List -->
+        <div class="feature-card" style="margin-bottom: 40px;">
+            <h2 class="feature-title">
+                <i data-lucide="zap" style="width: 32px; height: 32px;"></i>
+                All Features Included
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 24px;">
+                <div>
+                    <h3 style="color: #8B7355; margin-bottom: 8px;">✨ Visual Effects</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>Glassmorphism throughout</li>
+                        <li>Parallax scrolling</li>
+                        <li>Ken Burns zoom effect</li>
+                        <li>Shimmer animations</li>
+                        <li>Gradient overlays</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #8B7355; margin-bottom: 8px;">🖱️ Interactions</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>Custom cursor (desktop)</li>
+                        <li>3D tilt cards</li>
+                        <li>Magnetic buttons</li>
+                        <li>Ripple effects</li>
+                        <li>Smooth hover states</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #8B7355; margin-bottom: 8px;">⚡ Performance</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>Debounced events</li>
+                        <li>GPU acceleration</li>
+                        <li>Lazy loading</li>
+                        <li>Will-change hints</li>
+                        <li>60fps animations</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #8B7355; margin-bottom: 8px;">♿ Accessibility</h3>
+                    <ul style="color: #666; line-height: 2;">
+                        <li>WCAG 2.1 AA compliant</li>
+                        <li>Keyboard navigation</li>
+                        <li>Screen reader support</li>
+                        <li>Focus indicators</li>
+                        <li>Reduced motion support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2>Ready to Implement?</h2>
+            <p>Get started with Dynasty Hotel UI Enhancements in just 3 steps</p>
+            <div class="cta-buttons">
+                <a href="dynasty-ui-demo.html" class="cta-btn primary">View Full Demo</a>
+                <a href="QUICK_INTEGRATION.md" class="cta-btn secondary">Quick Start Guide</a>
+                <a href="DYNASTY_UI_ENHANCEMENTS_GUIDE.md" class="cta-btn secondary">Full Documentation</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
+        // Add simple hover effects
+        document.querySelectorAll('.demo-nav-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
